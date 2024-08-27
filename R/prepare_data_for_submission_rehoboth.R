@@ -1,6 +1,6 @@
 library(tidyverse)
 library(supporteR)
-library(xlsformfill) # https://github.com/impact-initiatives/xlsformfill
+
 
 df_gps_pts <- readxl::read_excel("inputs/gps_point_samples.xlsx", sheet = "rehoboth")
 
