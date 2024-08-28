@@ -11,7 +11,7 @@ data_path_water <- "inputs/rehoboth_water_check_support.csv"
 df_tool_data_water <- readr::read_csv(data_path_water) %>%  
   mutate(start = as_datetime(start),
          end = as_datetime(end),
-         today = as_date(start),
+         today = ifelse(row_number() > 5, as_date(start), as_date(start)-1),
          enumerator_id = "",
          `_uuid` = uuid) %>% 
   checks_add_extra_cols(input_enumerator_id_col = "enumerator_id",
