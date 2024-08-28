@@ -12,6 +12,10 @@ df_gen_names <- tibble(name = randomNames::randomNames(n = 500, ethnicity = 3, n
     select(entry_id, name, phone_num)
 # sample(df_gen_names$name, 1)
 
+#  filling remarks
+remarks_options <- c("done", "fixed", "worked on", "not perfectly completed")
+final_remarks_options <- c("job completed", "task finalized", "job finished")
+
 # water -------------------------------------------------------------------
 
 # tool
@@ -32,7 +36,13 @@ df_data_water <- xlsformfill::xlsform_fill(df_survey_water, df_choices_water, n 
            house_no = paste0(location,"_", int.group_rn)) %>% 
     select(-int.group_rn)
 
-write_csv(df_data_water, "inputs/rehoboth_water_check_support.csv")
+water_rmks <- sample(remarks_options,size=nrow(df_data_water), replace = TRUE)
+water_final_rmks <- sample(final_remarks_options,size=nrow(df_data_water), replace = TRUE)
+
+df_data_water_with_remarks <- df_data_water %>% 
+    mutate(remarks = water_rmks,
+           final_remarks = water_final_rmks)
+write_csv(df_data_water_with_remarks, "inputs/rehoboth_water_check_support.csv")
 
 # building inspection -----------------------------------------------------
 
@@ -49,8 +59,14 @@ df_data_building <- xlsformfill::xlsform_fill(df_survey_building, df_choices_bui
     mutate(application_id = paste0("jcb_", row_number()),
            name = recode(row_number(), !!!setNames(df_gen_names$name, df_gen_names$entry_id)),
            cell = recode(row_number(), !!!setNames(df_gen_names$phone_num, df_gen_names$entry_id)))
+
+building_rmks <- sample(remarks_options,size=nrow(df_data_building), replace = TRUE)
+
+df_data_building_with_remarks <- df_data_building %>% 
+    mutate(remarks = building_rmks)
+
 # export data
-write_csv(df_data_building, "inputs/rehoboth_building_check_support.csv")
+write_csv(df_data_building_with_remarks, "inputs/rehoboth_building_check_support.csv")
 
 # environmental health ----------------------------------------------------
 
