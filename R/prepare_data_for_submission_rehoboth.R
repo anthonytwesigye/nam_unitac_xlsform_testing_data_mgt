@@ -31,7 +31,10 @@ df_data_water_prepared <- df_data_water_cleaned %>%
            `grp_details/gps` = paste0(`grp_details/_gps_latitude`, " ", 
                                       `grp_details/_gps_longitude`, " ",
                                       `grp_details/_gps_altitude`, " ",
-                                      `grp_details/_gps_precision`))
+                                      `grp_details/_gps_precision`)) %>% 
+    relocate(any_of(c("grp_details/gps", "grp_details/_gps_latitude", 
+                    "grp_details/_gps_longitude", "grp_details/_gps_altitude", "grp_details/_gps_precision")), .after = "grp_details/cell") %>% 
+    select(-c("uuid", "index"))
 
 # export data
 write_csv(df_data_water_prepared, "outputs/rehoboth_testing_data_water.csv", na = "")
@@ -66,7 +69,11 @@ df_data_building_prepared <- df_data_building_cleaned %>%
            `grp_details/gps` = paste0(`grp_details/_gps_latitude`, " ", 
                                       `grp_details/_gps_longitude`, " ",
                                       `grp_details/_gps_altitude`, " ",
-                                      `grp_details/_gps_precision`))
+                                      `grp_details/_gps_precision`)) %>% 
+    relocate(any_of(c("grp_details/gps", "grp_details/_gps_latitude", 
+                      "grp_details/_gps_longitude", "grp_details/_gps_altitude", "grp_details/_gps_precision")), .after = "grp_details/cell") %>% 
+    select(-c("uuid", "index"))
+
 # export data
 write_csv(df_data_building_prepared, "outputs/rehoboth_testing_data_building.csv", na = "")
 write_csv(tibble(new_headings = colnames(df_data_building_prepared), old_headings = new_headings), "outputs/columns_rehoboth_data_building.csv")
@@ -99,7 +106,11 @@ df_data_environmental_prepared <- df_data_environmental_cleaned %>%
            `grp_details/gps` = paste0(`grp_details/_gps_latitude`, " ", 
                                       `grp_details/_gps_longitude`, " ",
                                       `grp_details/_gps_altitude`, " ",
-                                      `grp_details/_gps_precision`))
+                                      `grp_details/_gps_precision`)) %>% 
+    relocate(any_of(c("grp_details/gps", "grp_details/_gps_latitude", 
+                      "grp_details/_gps_longitude", "grp_details/_gps_altitude", "grp_details/_gps_precision")), .after = "grp_details/cell") %>% 
+    select(-c("uuid", "index"))
+
 # export data
 write_csv(df_data_environmental_prepared, "outputs/rehoboth_testing_data_environmental.csv", na = "")
 write_csv(tibble(new_headings = colnames(df_data_environmental_prepared), old_headings = new_headings), "outputs/columns_rehoboth_data_environmental.csv")
