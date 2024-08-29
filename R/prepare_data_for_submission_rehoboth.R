@@ -34,7 +34,7 @@ df_data_water_prepared <- df_data_water_cleaned %>%
                                       `grp_details/_gps_precision`))
 
 # export data
-write_csv(df_data_water_prepared, "outputs/rehoboth_testing_data_water.csv")
+write_csv(df_data_water_prepared, "outputs/rehoboth_testing_data_water.csv", na = "")
 write_csv(tibble(new_headings = colnames(df_data_water_prepared),
                  old_headings = new_headings), 
           "outputs/columns_rehoboth_data_water.csv")
@@ -68,7 +68,7 @@ df_data_building_prepared <- df_data_building_cleaned %>%
                                       `grp_details/_gps_altitude`, " ",
                                       `grp_details/_gps_precision`))
 # export data
-write_csv(df_data_building_prepared, "outputs/rehoboth_testing_data_building.csv")
+write_csv(df_data_building_prepared, "outputs/rehoboth_testing_data_building.csv", na = "")
 write_csv(tibble(new_headings = colnames(df_data_building_prepared), old_headings = new_headings), "outputs/columns_rehoboth_data_building.csv")
 
 # environmental health ----------------------------------------------------
@@ -101,6 +101,6 @@ df_data_environmental_prepared <- df_data_environmental_cleaned %>%
                                       `grp_details/_gps_altitude`, " ",
                                       `grp_details/_gps_precision`))
 # export data
-write_csv(df_data_environmental_prepared, "outputs/rehoboth_testing_data_environmental.csv")
+write_csv(df_data_environmental_prepared, "outputs/rehoboth_testing_data_environmental.csv", na = "")
 write_csv(tibble(new_headings = colnames(df_data_environmental_prepared), old_headings = new_headings), "outputs/columns_rehoboth_data_environmental.csv")
 
