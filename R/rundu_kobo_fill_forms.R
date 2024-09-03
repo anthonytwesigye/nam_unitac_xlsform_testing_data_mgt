@@ -24,7 +24,7 @@ df_survey_water <- readxl::read_excel(loc_tool_water, sheet = "survey")
 df_choices_water <- readxl::read_excel(loc_tool_water, sheet = "choices")
 
 # generate data
-set.seed(12333) 
+set.seed(1500) 
 df_data_water <- xlsformfill::xlsform_fill(df_survey_water, df_choices_water, n = 300) %>% 
     select(-contains("/")) %>% 
     group_by(location) %>% 
@@ -53,7 +53,7 @@ df_choices_building <- readxl::read_excel(loc_tool_building, sheet = "choices")
 
 # generate data
 
-set.seed(12333) 
+set.seed(1500) 
 df_data_building <- xlsformfill::xlsform_fill(df_survey_building, df_choices_building, n = 275) %>% 
     select(-contains("/")) %>% 
     mutate(application_id = paste0("jcb_", row_number()),
@@ -75,7 +75,7 @@ loc_tool_environmental <- "inputs/rundu_environmental_health_form.xlsx"
 df_survey_environmental <- readxl::read_excel(loc_tool_environmental, sheet = "survey")
 df_choices_environmental <- readxl::read_excel(loc_tool_environmental, sheet = "choices")
 
-set.seed(12333) 
+set.seed(1500) 
 df_data_environmental <- xlsformfill::xlsform_fill(df_survey_environmental, df_choices_environmental, n = 365) %>% 
     select(-contains("/")) %>% 
     mutate(application_id = paste0("jce_", row_number()),
