@@ -24,7 +24,7 @@ checks_output_water <- list()
 # data collected before 26th
 
 df_testing_data_water <- df_tool_data_water %>% 
-  filter(today < as_date("2024-08-28")) %>% 
+  filter(today < today()) %>% 
   mutate(i.check.type = "remove_survey",
          i.check.name = "",
          i.check.current_value = "",
@@ -70,7 +70,7 @@ checks_output_building <- list()
 # data collected before 26th
 
 df_testing_data_building <- df_tool_data_building %>% 
-  filter(today < as_date("2024-08-28")) %>% 
+  filter(today < today()) %>% 
   mutate(i.check.type = "remove_survey",
          i.check.name = "",
          i.check.current_value = "",
@@ -116,7 +116,7 @@ checks_output_environmental <- list()
 # data collected before 26th
 
 df_testing_data_environmental <- df_tool_data_environmental %>% 
-  filter(today < as_date("2024-08-28")) %>% 
+  filter(today < today()) %>% 
   mutate(i.check.type = "remove_survey",
          i.check.name = "",
          i.check.current_value = "",
